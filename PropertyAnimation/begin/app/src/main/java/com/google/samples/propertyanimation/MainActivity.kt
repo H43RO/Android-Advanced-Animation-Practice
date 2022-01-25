@@ -20,6 +20,7 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -109,9 +110,23 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun fader() {
+        val animator = ObjectAnimator.ofFloat(star, View.ALPHA, 0f)
+        animator.repeatCount = 1
+        animator.repeatMode = ObjectAnimator.REVERSE
+        animator.disableViewDuringAnimation(fadeButton)
+        animator.start()
     }
 
     private fun colorizer() {
+        val animator = ObjectAnimator.ofArgb(
+            star.parent,
+            "backgroundColor", Color.BLACK, Color.RED
+        )
+        animator.duration = 500
+        animator.repeatCount = 1
+        animator.repeatMode = ObjectAnimator.REVERSE
+        animator.disableViewDuringAnimation(colorizeButton)
+        animator.start()
     }
 
     private fun shower() {
